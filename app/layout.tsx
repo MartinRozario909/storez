@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/assets/styles/globals.css";
-import { APP_DESCRIPTION, APP_NAME, SERVER_URL } from '@/lib/contants';
+import { APP_DESCRIPTION, APP_NAME, SERVER_URL } from "@/lib/contants";
 import { ThemeProvider } from "next-themes";
+import { Toaster } from "@/components/ui/sonner";
 
-const inter = Inter({subsets: ['latin']});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
     template: `%s | StoreZ`,
-    default: APP_NAME, 
+    default: APP_NAME,
   },
   description: APP_DESCRIPTION,
-  metadataBase: new URL(SERVER_URL)
+  metadataBase: new URL(SERVER_URL),
 };
 
 export default function RootLayout({
@@ -23,13 +24,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} antialiased`}>
-        <ThemeProvider 
-          attribute='class'
-          defaultTheme='light'
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
-          >
+        >
           {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
