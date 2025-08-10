@@ -18,9 +18,7 @@ const AddToCart = ({ cart, item }: { cart?: Cart; item: CartItem }) => {
       const res = await addItemToCart(item);
 
       if (!res.success) {
-        toast.error(res.message, {
-          style: { backgroundColor: "red", color: "white" },
-        });
+        toast.error(res.message);
 
         return;
       }
@@ -40,11 +38,7 @@ const AddToCart = ({ cart, item }: { cart?: Cart; item: CartItem }) => {
     startTransition(async () => {
       const res = await removeItemFromCart(item.productId);
 
-      res.success
-        ? toast(res.message)
-        : toast.error(res.message, {
-            style: { backgroundColor: "red", color: "white" },
-          });
+      res.success ? toast(res.message) : toast.error(res.message);
 
       return;
     });
